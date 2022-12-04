@@ -14,6 +14,7 @@ chrome_options.add_argument("--mute-audio")
 #_______________________________________________________________________________
 DiscordEmail = "Put your email in here"                                  # Leave the quotes
 DiscordPassword = "Put your DISCORD, not email, password in here"        # Leave the quotes
+frequency = 15                                                           # About how often you want it to change your status (in seconds)
 #_______________________________________________________________________________
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #_______________________________________________________________________________
@@ -87,5 +88,5 @@ while(True):
         counter1 = 0
     elif block2.value_of_css_property('display') != "none":
         counter2 = 0
-    time.sleep(15)
+    time.sleep(frequency)
     pass
