@@ -15,6 +15,7 @@ chrome_options.add_argument("--mute-audio")
 DiscordEmail = "Put your email in here"                                  # Leave the quotes
 DiscordPassword = "Put your DISCORD, not email, password in here"        # Leave the quotes
 frequency = 15                                                           # About how often you want it to change your status (in seconds)
+twoFA = True                                                             # Make sure this reflects whether you have it on on your account
 #_______________________________________________________________________________
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #_______________________________________________________________________________
@@ -40,6 +41,30 @@ def WebWait(xpath, method,textInput=''):
 WebWait('/html/body/div[2]/div[2]/div/div[1]/div/div/div/div/form/div[2]/div/div[1]/div[2]/div[1]/div/div[2]/input', 'send_keys', DiscordEmail) # Put in Email
 WebWait('/html/body/div[2]/div[2]/div/div[1]/div/div/div/div/form/div[2]/div/div[1]/div[2]/div[2]/div/input', 'send_keys', DiscordPassword) # Put in Password
 WebWait('/html/body/div[2]/div[2]/div/div[1]/div/div/div/div/form/div[2]/div/div[1]/div[2]/button[2]', 'click') # Click Login
+
+if twoFA:
+    code = ''
+
+    root = tk.Tk()
+    root.title('Please input a 2FA Authentication Code')
+    canvas1 = tk.Canvas(root, width=400, height=300)
+    canvas1.pack()
+    codeElement = tk.Entry(root)
+    canvas1.create_window(200, 140, window=codeElement)
+    def Enter():
+        code = codeElement.get()
+        WebWait('/html/body/div[2]/div[2]/div/div[1]/div/div/div/form/div[2]/div[2]/div/div/input', 'send_keys', code)
+        WebWait('/html/body/div[2]/div[2]/div/div[1]/div/div/div/form/div[2]/div[2]/button[1]', 'click')
+        root.destroy()
+        twoFA = False
+
+    button1 = tk.Button(text='Enter', command = Enter)
+    canvas1.create_window(200, 180, window=button1)
+    root.mainloop()
+
+    while not driver.current_url == 'https://discord.com/channels/@me' and twoFA:
+        time.sleep(0.5)
+        pass
 
 def changeStatus(newStatus):
     driver.switch_to.window('discord')
