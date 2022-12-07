@@ -97,8 +97,9 @@ def changeStatus(newStatus):
     driver.switch_to.window('discord')
 
     WebWait('/html/body/div[2]/div[2]/div/div[1]/div/div[2]/div/div[1]/div/div/div/section/div[2]/div[1]', 'click') # Click on Account Widget
+    WebWait('/html/body/div[2]/div[2]/div/div[3]/div/div/div/div/div/div[3]/div[5]/div/div[1]/div[3]', 'click') # Open Status Window
     try: #Already a status
-        WebWait('/html/body/div[2]/div[2]/div/div[3]/div/div/div/div/div/div[3]/div[5]/div/div[1]/div[3]', 'click') # Open Status Window
+        WebWait('/html/body/div[2]/div[2]/div/div[3]/div[2]/div/div/div[2]/div[1]/div[2]/div/button', 'click')
         WebDriverWait(driver, 2).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div[2]/div/div[3]/div[2]/div/div/div[2]/div[1]/div[2]/div/div[2]/input')))
         driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/div/div[3]/div[2]/div/div/div[2]/div[1]/div[2]/div/div[2]/input').clear()
     except: #No Status
