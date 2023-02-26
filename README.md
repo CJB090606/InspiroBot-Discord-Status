@@ -5,3 +5,5 @@ To make it work for your account, download the zip for the project, open the .py
 
 Original site: https://inspirobot.me/mindfulnessmode
 Give InspiroBot lots of love!
+
+ATENTION: CURRENTLY NOT WORKING! I'LL PROBABLY FIX IT EVENTUALLY, BUT NO IDEA WHEN.
